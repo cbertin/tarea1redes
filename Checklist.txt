@@ -1,0 +1,11 @@
+Pendientes
+
+Servidor:
+Implementar metodo GET 
+Implementar metodo POST
+
+Interfaz:
+Vista 1: Agregar contactos
+Vista 2: Mostrar contactos
+
+Luego conectar :)
