@@ -6,7 +6,7 @@ import java.util.*;
 
 public class Servidor
 {
-	int puerto = 90;
+	int puerto = 8080;
 	
 	final int ERROR = 0;
 	final int WARNING = 1;
@@ -46,13 +46,13 @@ public class Servidor
 	
 	boolean arranca()
 	{
-		depura("Arrancamos nuestro servidor",DEBUG);
+		depura("Arrancamos nuestro servidor",DEBUG); 
 		
 		try
 		{
 		
 			
-			ServerSocket s = new ServerSocket(90);
+			ServerSocket s = new ServerSocket(puerto);
 
 			depura("Quedamos a la espera de conexion");
 			
