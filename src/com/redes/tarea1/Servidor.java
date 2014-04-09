@@ -141,7 +141,7 @@ class peticionWeb extends Thread
                     
                     if ((st.countTokens() >= 2) && st.nextToken().equals("GET")) 
                     {
-                    	retornaFichero(st.nextToken()) ;
+                    	retornaFichero(st.nextToken()) ; //aqui desarmamos la peticion 
                     }
                     else 
                     {
