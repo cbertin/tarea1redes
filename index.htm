@@ -24,25 +24,31 @@
          plugins que utilices) -->
     <script src="js/bootstrap.min.js"></script>
 	
+	
+	<form name="login" action="loginhandler.php" method="POST">
+<input="text" name="username" value="">
+<input="password" name="password" value="">
+</form>
+	
 
   <h1 class="text-center">Agregar contacto</h1>
-	<form role="form">
+	<form name="nuevo_contacto" role="form" action="index.htm" method="POST">
 	  <div class="form-group">
 		<label for="ejemplo_email_1">nombre</label>
-		<input type="name" class="form-control" id="nombre_vista1"
+		<input type="name" class="form-control" id="nombre"
 			   placeholder="ingrese el nombre del contacto">
 	  </div>
 	  <div class="form-group">
 		<label for="ejemplo_password_1">Direcci&oacute;n IP</label>
-		<input type="text" class="form-control" id="ip_vista1" 
+		<input type="text" class="form-control" id="ip" 
 			   placeholder="ingrese direcci&oacute;n IP">
 	  </div>
 	  <div class="form-group">
 		<label for="ejemplo_password_1">Puerto</label>
-		<input type="text" class="form-control" id="puerto_vista1" 
+		<input type="text" class="form-control" id="puerto" 
 			   placeholder="ingrese puerto">
 	  </div>
-	  <button type="b" class="btn btn-default">Guardar contacto</button>
+	  <button type="submit" class="btn btn-default">Guardar contacto</button>
 	</form>	
   </body>
 </html>
