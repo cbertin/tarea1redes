@@ -11,7 +11,7 @@ public class Servidor
 	final int ERROR = 0;
 	final int WARNING = 1;
 	final int DEBUG = 2;
-	
+	String line;
 		
 	// funcion para centralizar los mensajes de depuracion
 
@@ -143,16 +143,18 @@ class peticionWeb extends Thread
                     {
                     	retornaFichero(st.nextToken()) ; //aqui desarmamos la peticion 
                     	System.out.println("dentro de GET");
-
+                    	
                     }
 
                 	if((st.countTokens() >= 2) && tok.equals("POST")){
                 		System.out.println("dentro de post\n");
                 		Map<String, String> data = new HashMap<String, String>();
+                		//retornaFichero(st.nextToken());
                 		data.put("nombre", "someuser");
                 		data.put("ip", "supersecret");
                 		data.put("puerto", "elpuerto");
-                		doSubmit("127.0.0.1:8080/index.htm", data);
+                		doSubmit("http://localhost:8080/index.htm", data);
+                		
                 	}
                 	else
                     {
