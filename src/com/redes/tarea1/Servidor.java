@@ -3,6 +3,7 @@ package com.redes.tarea1;
 import java.io.*;
 import java.net.*;
 import java.util.*;
+import java.util.stream.Stream;
 
 public class Servidor
 {
@@ -11,7 +12,22 @@ public class Servidor
 	final int WARNING = 1;
 	final int DEBUG = 2;
 	String line;
-		
+	String result[] = new String[9];
+
+	  void parsing (String query) //metodo parseo de querry
+	 {
+	     int i=0;
+	     for (String param : query.split("&")) {
+	         String pair[] = param.split("=");
+	          result[i]=pair[0];
+	          result[i+1]=pair[1];  
+	          i+=2;
+	          //System.out.println(pair[0] + " : " + pair[1]);
+	         }
+	        System.out.println(result[0] + " " + result[1] + " " + result[2] + " " + result[3] + " " + result[4] + " " + result[5]);
+
+	         }
+
 	// funcion para centralizar los mensajes de depuracion
 	void depura(String mensaje)
 	{
@@ -147,38 +163,26 @@ class peticionWeb extends Thread
 
                 	if((st.countTokens() >= 2) && tok.equals("POST")){
                 		System.out.println("dentro de POST\n");
-                		System.out.println("dentro de POST\n");
-                		System.out.println("1:"+cadena);
-                		cadena=in.readLine();
-                		System.out.println("2:"+cadena);
-                		cadena=in.readLine();
-                		System.out.println("3:"+cadena);
-                		cadena=in.readLine();
-                		System.out.println("4:"+cadena);
-                		cadena=in.readLine();
-                		System.out.println("5:"+cadena);
-                		cadena=in.readLine();
-                		System.out.println("6:"+cadena);
-                		cadena=in.readLine();
-                		System.out.println("7:"+cadena);
-                		cadena=in.readLine();
-                		System.out.println("8:"+cadena);
-                		cadena=in.readLine();
-                		System.out.println("9:"+cadena);
-                		cadena=in.readLine();
-                		System.out.println("10:"+cadena);
-                		cadena=in.readLine();
-                		System.out.println("11:"+cadena);
-                		System.out.println(cadena);
-                		System.out.println("12:"+cadena);
-                		sleep(10000);
-                		Map<String, String> data = new HashMap<String, String>();
-                		//retornaFichero(st.nextToken());
-                		data.put("nombre", "someuser");
-                		data.put("ip", "supersecret");
-                		data.put("puerto", "elpuerto");
-                		doSubmit("http://localhost:8080/index.htm", data);
+                		int aux=0;
+                		int pepe=in.read();
+                		String contenido="";
+                		while(aux!=1){
+                		contenido=contenido+(char)pepe;
+                		pepe=in.read();
+                		System.out.println("ñ");
+                		System.out.println((char)pepe);
+                		if(pepe == Character.getNumericValue('ñ'))
+                		{
+                			System.out.println("En el if");          
+                			contenido=contenido+(char)in.read();
+                			contenido=contenido+(char)in.read();
+                			contenido=contenido+(char)in.read();
+                			aux=1;
+                		}
+                		}
                 		
+                		System.out.println(contenido);
+                		               		
                 	}
                 	else
                     {
