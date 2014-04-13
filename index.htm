@@ -25,23 +25,19 @@
 	
 
   <h1 class="text-center">Agregar contacto</h1>
-	<form name="nuevo_contacto" role="form" action="index.htm" method="POST">
-	  <div class="form-group">
-		<label for="ejemplo_email_1">nombre</label>
-		<input type="name" class="form-control" id="nombre"
+	
+	
+	<form method="POST" action="datos.txt">
+		<label>Nombre</label>
+		<input type="text" class="form-control" id="nombre"
 			   placeholder="ingrese el nombre del contacto">
-	  </div>
-	  <div class="form-group">
-		<label for="ejemplo_password_1">Direcci&oacute;n IP</label>
+		<label>Direcci&oacute;n IP</label>
 		<input type="text" class="form-control" id="ip" 
 			   placeholder="ingrese direcci&oacute;n IP">
-	  </div>
-	  <div class="form-group">
-		<label for="ejemplo_password_1">Puerto</label>
-		<input type="text" class="form-control" id="puerto" 
+		<label>Puerto</label>
+		<input type="number" class="form-control" id="puerto" 
 			   placeholder="ingrese puerto">
-	  </div>
-	  <button type="submit" class="btn btn-default">Guardar contacto</button>
+	  <input type="submit" value="Guardar contacto">
 	</form>	
   </body>
 </html>

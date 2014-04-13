@@ -7,14 +7,12 @@ import java.util.*;
 public class Servidor
 {
 	int puerto = 8080;
-	
 	final int ERROR = 0;
 	final int WARNING = 1;
 	final int DEBUG = 2;
 	String line;
 		
 	// funcion para centralizar los mensajes de depuracion
-
 	void depura(String mensaje)
 	{
 		depura(mensaje,DEBUG);
@@ -139,6 +137,7 @@ class peticionWeb extends Thread
 			        
 			       StringTokenizer st = new StringTokenizer(cadena);
 			       String tok = st.nextToken();
+
                     if ((st.countTokens() >= 2) && tok.equals("GET")) 
                     {
                     	retornaFichero(st.nextToken()) ; //aqui desarmamos la peticion 
@@ -147,7 +146,32 @@ class peticionWeb extends Thread
                     }
 
                 	if((st.countTokens() >= 2) && tok.equals("POST")){
-                		System.out.println("dentro de post\n");
+                		System.out.println("dentro de POST\n");
+                		System.out.println("dentro de POST\n");
+                		System.out.println("1:"+cadena);
+                		cadena=in.readLine();
+                		System.out.println("2:"+cadena);
+                		cadena=in.readLine();
+                		System.out.println("3:"+cadena);
+                		cadena=in.readLine();
+                		System.out.println("4:"+cadena);
+                		cadena=in.readLine();
+                		System.out.println("5:"+cadena);
+                		cadena=in.readLine();
+                		System.out.println("6:"+cadena);
+                		cadena=in.readLine();
+                		System.out.println("7:"+cadena);
+                		cadena=in.readLine();
+                		System.out.println("8:"+cadena);
+                		cadena=in.readLine();
+                		System.out.println("9:"+cadena);
+                		cadena=in.readLine();
+                		System.out.println("10:"+cadena);
+                		cadena=in.readLine();
+                		System.out.println("11:"+cadena);
+                		System.out.println(cadena);
+                		System.out.println("12:"+cadena);
+                		sleep(10000);
                 		Map<String, String> data = new HashMap<String, String>();
                 		//retornaFichero(st.nextToken());
                 		data.put("nombre", "someuser");
