@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Agregar contacto</title>
+ 
+    <!-- CSS de Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+ 
+    <!-- librerías opcionales que activan el soporte de HTML5 para IE8 -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body> 
+    <!-- Librería jQuery requerida por los plugins de JavaScript -->
+    <script src="http://code.jquery.com/jquery.js"></script>
+ 
+    <!-- Todos los plugins JavaScript de Bootstrap (también puedes
+         incluir archivos JavaScript individuales de los únicos
+         plugins que utilices) -->
+    <script src="js/bootstrap.min.js"></script>
+	
+	
+	<form name="login" action="loginhandler.php" method="POST">
+<input="text" name="username" value="">
+<input="password" name="password" value="">
+</form>
+	
+
+  <h1 class="text-center">Agregar contacto</h1>
+	<form name="nuevo_contacto" role="form" action="index.htm" method="POST">
+	  <div class="form-group">
+		<label for="ejemplo_email_1">nombre</label>
+		<input type="name" class="form-control" id="nombre"
+			   placeholder="ingrese el nombre del contacto">
+	  </div>
+	  <div class="form-group">
+		<label for="ejemplo_password_1">Direcci&oacute;n IP</label>
+		<input type="text" class="form-control" id="ip" 
+			   placeholder="ingrese direcci&oacute;n IP">
+	  </div>
+	  <div class="form-group">
+		<label for="ejemplo_password_1">Puerto</label>
+		<input type="text" class="form-control" id="puerto" 
+			   placeholder="ingrese puerto">
+	  </div>
+	  <button type="submit" class="btn btn-default">Guardar contacto</button>
+	</form>	
+  </body>
+</html>

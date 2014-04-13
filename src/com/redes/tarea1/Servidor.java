@@ -3,7 +3,7 @@ package com.redes.tarea1;
 import java.io.*;
 import java.net.*;
 import java.util.*;
-import java.util.stream.Stream;
+//import java.util.stream.Stream;
 
 public class Servidor
 {
@@ -12,22 +12,9 @@ public class Servidor
 	final int WARNING = 1;
 	final int DEBUG = 2;
 	String line;
-	String result[] = new String[9];
+	String result[] = new String[15];
 
-	  void parsing (String query) //metodo parseo de querry
-	 {
-	     int i=0;
-	     for (String param : query.split("&")) {
-	         String pair[] = param.split("=");
-	          result[i]=pair[0];
-	          result[i+1]=pair[1];  
-	          i+=2;
-	          //System.out.println(pair[0] + " : " + pair[1]);
-	         }
-	        System.out.println(result[0] + " " + result[1] + " " + result[2] + " " + result[3] + " " + result[4] + " " + result[5]);
-
-	         }
-
+	  
 	// funcion para centralizar los mensajes de depuracion
 	void depura(String mensaje)
 	{
@@ -86,7 +73,22 @@ public class Servidor
 		return true;
 	}
 	
-}
+
+
+void parsing(String query) //metodo parseo de querry
+{
+   int i=0;
+   for (String param : query.split("&")) {
+       String pair[] = param.split("=");
+        result[i]=pair[0];
+        result[i+1]=pair[1];  
+        i+=2;
+        //System.out.println(pair[0] + " : " + pair[1]);
+       }
+   		for(int j=0;j<result.length;j++)
+   			System.out.println("-- " + result[j] + "--");
+
+       }
 
 
 
@@ -126,6 +128,8 @@ class peticionWeb extends Thread
 	public void run() // emplementamos el metodo run
 	{
 		depura("Procesamos conexion");
+		int endFile=0;
+
 
 		try
 		{
@@ -150,7 +154,7 @@ class peticionWeb extends Thread
 				if(i == 0) // la primera linea nos dice que fichero hay que descargar
 				{
 			        i++;
-			        
+			       
 			       StringTokenizer st = new StringTokenizer(cadena);
 			       String tok = st.nextToken();
 
@@ -163,34 +167,36 @@ class peticionWeb extends Thread
 
                 	if((st.countTokens() >= 2) && tok.equals("POST")){
                 		System.out.println("dentro de POST\n");
-                		int aux=0;
-                		int pepe=in.read();
-                		String contenido="";
-                		while(aux!=1){
-                		contenido=contenido+(char)pepe;
-                		pepe=in.read();
-                		System.out.println("ñ");
-                		System.out.println((char)pepe);
-                		if(pepe == Character.getNumericValue('ñ'))
-                		{
-                			System.out.println("En el if");          
-                			contenido=contenido+(char)in.read();
-                			contenido=contenido+(char)in.read();
-                			contenido=contenido+(char)in.read();
-                			aux=1;
+                		int pepe;
+                		StringBuilder concadenado = new StringBuilder(); //para concatenar el string, aun con null entre medio
+                		while(endFile==0){ //en form agregado char 178
+                			pepe=in.read();
+                		concadenado.append((char)pepe);
+                		//System.out.print("CONTENIDO ES: " + contenido + "END OF CONTENIDO");
+                		System.out.print("\n---CONCADENADO---\n " + concadenado.toString() + "\n---END OF CONCADENADO---\n");
+                		System.out.print("--" + (char)pepe + "--"); //%EF%BF%BD%3
+                		String checkEnd = concadenado.toString();
+                			if(checkEnd.endsWith("%EF%BF%BD%3")){ //si el string include la Ñ
+                				endFile=1;
+                				System.out.println("\nSALIR DEL WHILE!!!!!!!\n");
+                				parsing(checkEnd);
+                    			//close socket?
+                			}
+                			
+                			}
                 		}
+
                 		}
                 		
-                		System.out.println(contenido);
                 		               		
-                	}
+                	
                 	else
                     {
                     	out.println("400 Petición Incorrecta") ;
                     }
 				}
 				
-			}
+			
 			while (cadena != null && cadena.length() != 0);
 
 		}
@@ -304,7 +310,7 @@ class peticionWeb extends Thread
 			System.out.println(line);
 		}
 		in.close();
-	}
+	}}
+}
 
 	
-}
