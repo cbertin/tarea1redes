@@ -12,7 +12,7 @@ public class Servidor
 	final int WARNING = 1;
 	final int DEBUG = 2;
 	String line;
-	String result[] = new String[15];
+	String result[] = new String[8];
 
 	  
 	// funcion para centralizar los mensajes de depuracion
@@ -73,11 +73,41 @@ public class Servidor
 		return true;
 	}
 	
+	public void escribir(String nombreArchivo,String texto)
+	{
+	File f;
+	f = new File(nombreArchivo);
+	//Escritura
+	try{
+		FileWriter w = new FileWriter(f,true);
+		BufferedWriter bw = new BufferedWriter(w);
+		PrintWriter wr = new PrintWriter(bw);  
+		wr.println(texto);//escribimos en el archivo
+		wr.close();
+		bw.close();
+		}catch(IOException e)
+		{};
+	}
+	
+	public void leer() throws IOException
+	{
+		BufferedReader reader = new BufferedReader(new FileReader("contacto.pp"));
+		String line = null;
+		while ((line = reader.readLine()) != null) {
+		    System.out.println(line);
+		}
+		reader.close();
+	}
+
+	
 
 
 void parsing(String query) //metodo parseo de querry
 {
    int i=0;
+   int inicio;
+   inicio = query.indexOf("nombre");
+   query = query.substring(inicio);
    for (String param : query.split("&")) {
        String pair[] = param.split("=");
         result[i]=pair[0];
@@ -87,8 +117,10 @@ void parsing(String query) //metodo parseo de querry
        }
    		for(int j=0;j<result.length;j++)
    			System.out.println("-- " + result[j] + "--");
+   		
+   		escribir("contacto.pp", result[1]+"\t"+result[3]+"\t"+result[5]);
 
-       }
+   }
 
 
 
@@ -166,6 +198,7 @@ class peticionWeb extends Thread
                     }
 
                 	if((st.countTokens() >= 2) && tok.equals("POST")){
+                		String checkEnd=null;
                 		System.out.println("dentro de POST\n");
                 		int pepe;
                 		StringBuilder concadenado = new StringBuilder(); //para concatenar el string, aun con null entre medio
@@ -175,15 +208,15 @@ class peticionWeb extends Thread
                 		//System.out.print("CONTENIDO ES: " + contenido + "END OF CONTENIDO");
                 		System.out.print("\n---CONCADENADO---\n " + concadenado.toString() + "\n---END OF CONCADENADO---\n");
                 		System.out.print("--" + (char)pepe + "--"); //%EF%BF%BD%3
-                		String checkEnd = concadenado.toString();
+                		checkEnd = concadenado.toString();
                 			if(checkEnd.endsWith("%EF%BF%BD%3")){ //si el string include la Ñ
                 				endFile=1;
                 				System.out.println("\nSALIR DEL WHILE!!!!!!!\n");
                 				parsing(checkEnd);
                     			//close socket?
                 			}
-                			
                 			}
+                		retornaFichero("vista2.htm");//le responde al servidor devolviendo la vista luego de agregar el contacto
                 		}
 
                 		}
@@ -240,7 +273,8 @@ class peticionWeb extends Thread
 				out.println("Content-Type: text/html");
 				out.println("Content-Length: " + mifichero.length());
 				out.println("\n");
-			
+				leer();
+				
 				BufferedReader ficheroLocal = new BufferedReader(new FileReader(mifichero));
 				
 				
