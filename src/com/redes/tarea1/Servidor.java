@@ -312,39 +312,7 @@ class peticionWeb extends Thread
 		}
 
 	}
-	
-	//INICIO METODO POST
-	public void doSubmit(String url, Map<String, String> data) throws Exception {
-		System.out.println("dentro de post\n");
-		URL siteUrl = new URL(url);
-		HttpURLConnection conn = (HttpURLConnection) siteUrl.openConnection();
-		conn.setRequestMethod("POST");
-		conn.setDoOutput(true);
-		conn.setDoInput(true);
-		
-		DataOutputStream out = new DataOutputStream(conn.getOutputStream());
-		
-		Set keys = data.keySet();
-		Iterator keyIter = keys.iterator();
-		String content = "";
-		for(int i=0; keyIter.hasNext(); i++) {
-			Object key = keyIter.next();
-			if(i!=0) {
-				content += "&";
-			}
-			content += key + "=" + URLEncoder.encode(data.get(key), "UTF-8");
-		}
-		System.out.println(content);
-		out.writeBytes(content);
-		out.flush();
-		out.close();
-		BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-		String line = "";
-		while((line=in.readLine())!=null) {
-			System.out.println(line);
-		}
-		in.close();
-	}}
+	}
 }
 
 	
