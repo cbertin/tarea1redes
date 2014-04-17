@@ -27,7 +27,7 @@ function getLocation()
 {
 var theURL = window.document.URL.toString(); 
 var parser = document.createElement('a');
-parser.href = theURL;	//"http://localhost:8080/vista2.htm?nombre=Celeste+Bertin&ip=1.1.1.1&puerto=1234";
+parser.href ="http://localhost:8080/vista2.htm?nombre=Celeste+Bertin&ip=1.1.1.1&puerto=1234";	//theURL;
 
 var prot = parser.protocol; // => "http:"
 var hos = parser.host;     // => "example.com:3000"
@@ -57,6 +57,25 @@ document.write("</p>");
 document.write("<p>");
 document.write(searc);
 document.write("</p>");
+
+document.write(getQueryParams(searc));
+}
+
+function getQueryParams(qs) { //expresion regular para dividir el query del URL
+    qs = qs.split("+").join(" ");
+
+    var params = {}, tokens,
+        re = /[?&]?([^=]+)=([^&]*)/g;
+
+    while (tokens = re.exec(qs)) {
+        params[decodeURIComponent(tokens[1])]
+            = decodeURIComponent(tokens[2]);
+			document.write(tokens[1]);
+			document.write("\t");
+			document.write(tokens[2]);
+			document.write("</br>");
+    }
+    return params;
 }
 </script>
 
