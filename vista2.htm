@@ -19,6 +19,47 @@
          plugins que utilices) -->
     <script src="js/bootstrap.min.js"></script>
 	
+	<button type="button" onclick="getLocation()">Parse URL</button>
+	<p id="parse">
+	
+<script>
+function getLocation()
+{
+var theURL = window.document.URL.toString(); 
+var parser = document.createElement('a');
+parser.href = theURL;	//"http://localhost:8080/vista2.htm?nombre=Celeste+Bertin&ip=1.1.1.1&puerto=1234";
+
+var prot = parser.protocol; // => "http:"
+var hos = parser.host;     // => "example.com:3000"
+var hostnam = parser.hostname; // => "example.com"
+var por = parser.port;     // => "3000"
+var pathnam = parser.pathname; // => "/pathname/"
+var has = parser.hash;     // => "#hash"
+var searc = parser.search;   // => "?search=test"
+
+document.write("</p>");
+document.write(prot);
+document.write("<p>");
+document.write(hos);
+document.write("</p>");
+document.write("<p>");
+document.write(hostnam);
+document.write("</p>");
+document.write("<p>");
+document.write(por);
+document.write("</p>");
+document.write("<p>");
+document.write(pathnam);
+document.write("</p>");
+document.write("<p>");
+document.write(has);
+document.write("</p>");
+document.write("<p>");
+document.write(searc);
+document.write("</p>");
+}
+</script>
+
   <h1 class="text-left">Contactos</h1>
 	<table class="table">
 		<td>

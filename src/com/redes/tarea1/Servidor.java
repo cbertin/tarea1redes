@@ -268,7 +268,7 @@ class peticionWeb extends Thread
 		    if (mifichero.exists()) 
 		    {
 	      		out.println("HTTP/1.0 200 ok");
-				out.println("Server: Roberto Server/1.0");
+				out.println("Server: Tarea1Redes Server/1.0");
 				out.println("Date: " + new Date());
 				out.println("Content-Type: text/html");
 				out.println("Content-Length: " + mifichero.length());
