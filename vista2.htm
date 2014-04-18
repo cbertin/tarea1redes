@@ -23,6 +23,12 @@
 	<p id="parse">
 	
 <script>
+var req = new XMLHttpRequest();
+	req.open('GET', document.location, false);
+	req.send(null);
+	var headers = req.getAllResponseHeaders().toLowerCase();
+	alert(headers);
+
 function getLocation()
 {
 var theURL = window.document.URL.toString(); 

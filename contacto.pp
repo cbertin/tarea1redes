@@ -1,7 +1,3 @@
-Juan+Carlos	192.168.1.1	1313
-Celeste	192.168.1.2	8080
-Obiwan	9.9.9.9	1111
-Celeste+Bertin	1.1.1.1	1313
-Almighty+Potato	13.14.15.16	1423
-Seba	5.5.5.5	9876
-Seba+Tobar	5.5.5.5	5432
+nombre=seba&ip=192.168.1.1&puerto=1313
+nombre=Celeste&ip=5.5.5.5&puerto=8080
+nombre=Juan+Carlos&ip=1.1.1.1&puerto=8080

@@ -89,19 +89,6 @@ public class Servidor
 		{};
 	}
 	
-	public void leer() throws IOException
-	{
-		BufferedReader reader = new BufferedReader(new FileReader("contacto.pp"));
-		String line = null;
-		while ((line = reader.readLine()) != null) {
-		    System.out.println(line);
-		}
-		reader.close();
-	}
-
-	
-
-
 void parsing(String query) //metodo parseo de querry
 {
    int i=0;
@@ -118,7 +105,7 @@ void parsing(String query) //metodo parseo de querry
    		for(int j=0;j<result.length;j++)
    			System.out.println("-- " + result[j] + "--");
    		
-   		escribir("contacto.pp", result[1]+"\t"+result[3]+"\t"+result[5]);
+   		escribir("contacto.pp", "nombre="+result[1]+"&ip="+result[3]+"&puerto="+result[5]);
 
    }
 
@@ -242,10 +229,10 @@ class peticionWeb extends Thread
 	}
 	
 	
-	void retornaFichero(String sfichero)
+	void retornaFichero(String sfichero) throws IOException
 	{
 		depura("Recuperamos el fichero " + sfichero);
-		
+		System.out.println("El fichero es "+sfichero);
 		// comprobamos si tiene una barra al principio
 		if (sfichero.startsWith("/"))
 		{
@@ -258,6 +245,23 @@ class peticionWeb extends Thread
         {
         	sfichero = sfichero + "index.htm" ;
         }
+
+        String variables="";
+        if (sfichero.equals("vista2.htm"))
+        {
+        	variables = variables + "?";
+        	BufferedReader reader = new BufferedReader(new FileReader("contacto.pp"));
+    		String line = null;
+    		while ((line = reader.readLine()) != null) {
+    		    System.out.println(line);
+    		    variables = variables+line+"&";
+    		}
+    		reader.close();
+    		variables=variables.substring(0,variables.length()-1);
+    		System.out.println(variables);
+		   
+        	
+        }
         
         try
         {
@@ -268,12 +272,13 @@ class peticionWeb extends Thread
 		    if (mifichero.exists()) 
 		    {
 	      		out.println("HTTP/1.0 200 ok");
-				out.println("Server: Tarea1Redes Server/1.0");
+				out.println("Server: Tarea1 Server/1.0");
 				out.println("Date: " + new Date());
 				out.println("Content-Type: text/html");
 				out.println("Content-Length: " + mifichero.length());
+				out.println("Datos:"+variables);
 				out.println("\n");
-				leer();
+		
 				
 				BufferedReader ficheroLocal = new BufferedReader(new FileReader(mifichero));
 				
