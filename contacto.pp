@@ -1,11 +1,4 @@
 nombre=seba&ip=192.168.1.1&puerto=1313
 nombre=Celeste&ip=5.5.5.5&puerto=8080
 nombre=Juan+Carlos&ip=1.1.1.1&puerto=8080
-nombre=Panda+Nanairo&ip=6.5.4.3&puerto=1313
-nombre=Contacto&ip=10.10.10.10&puerto=9876
-nombre=The+Panda&ip=35.35.35.35&puerto=9999
-nombre=The+Almighty+Panda&ip=43.43.43.43&puerto=9876
-nombre=Minecraft+Potato&ip=24.24.24.24&puerto=1234
-nombre=Juan+Carlos&ip=9.9.9.9&puerto=999
-nombre=The+Contacto&ip=24.24.24.42&puerto=9876
-nombre=Das+Potato&ip=13.13.13.13&puerto=1234
+nombre=Obiwan&ip=1.1.1.1&puerto=1313
