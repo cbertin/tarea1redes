@@ -19,21 +19,20 @@
          plugins que utilices) -->
     <script src="js/bootstrap.min.js"></script>
 	
-	<button type="button" onclick="getLocation()">Parse URL</button>
-	<p id="parse">
-	
 <script>
 var req = new XMLHttpRequest();
 	req.open('GET', document.location, false);
 	req.send(null);
 	var headers = req.getAllResponseHeaders().toLowerCase();
+	getLocation(headers);
 	alert(headers);
 
-function getLocation()
+function getLocation(string)
 {
-var theURL = window.document.URL.toString(); 
+//var theURL = window.document.URL.toString(); 
 var parser = document.createElement('a');
-parser.href ="http://localhost:8080/vista2.htm?nombre=Celeste+Bertin&ip=1.1.1.1&puerto=1234";	//theURL;
+parser.href =string;	//theURL;
+parser.href =string;	//theURL;
 
 var prot = parser.protocol; // => "http:"
 var hos = parser.host;     // => "example.com:3000"
@@ -43,7 +42,7 @@ var pathnam = parser.pathname; // => "/pathname/"
 var has = parser.hash;     // => "#hash"
 var searc = parser.search;   // => "?search=test"
 
-document.write("</p>");
+//document.write("</p>");
 document.write(prot);
 document.write("<p>");
 document.write(hos);
@@ -64,23 +63,30 @@ document.write("<p>");
 document.write(searc);
 document.write("</p>");
 
-document.write(getQueryParams(searc));
+getQueryParams(searc);
 }
 
 function getQueryParams(qs) { //expresion regular para dividir el query del URL
-    qs = qs.split("+").join(" ");
-
+    qs = qs.split("+").join(" "); //cambia + por espacio
+	var contador=0;
     var params = {}, tokens,
-        re = /[?&]?([^=]+)=([^&]*)/g;
-
+        re = /[?&]?([^=]+)=([^&]*)()/g;
+	document.write("<table><tr>");
     while (tokens = re.exec(qs)) {
         params[decodeURIComponent(tokens[1])]
             = decodeURIComponent(tokens[2]);
-			document.write(tokens[1]);
-			document.write("\t");
+			document.write("<td>")
+			//document.write(tokens[1]);
+			document.write("</td><td>")
 			document.write(tokens[2]);
-			document.write("</br>");
+	
+			contador=contador+1;
+			if((contador%3)==0){
+				document.write("</tr><tr>");
+				}		
     }
+	document.write("</tr></table>");
+	
     return params;
 }
 </script>
