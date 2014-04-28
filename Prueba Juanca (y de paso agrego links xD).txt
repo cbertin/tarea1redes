@@ -1,6 +1,0 @@
-http://emiliodevesa.com/un-servidor-web-sencillo-en-java/
-http://librosweb.es/bootstrap_3/capitulo_1/la_primera_plantilla_bootstrap.html
-http://librosweb.es/bootstrap_3/capitulo_6/listas_de_elementos.html
-http://librosweb.es/bootstrap_3/capitulo_6/grupos_de_campos_de_formulario.html
-http://librosweb.es/bootstrap_3/capitulo_4/_tablas.html
-http://librosweb.es/bootstrap_3/capitulo_6/grupos_de_botones.html
