@@ -67,6 +67,7 @@ getQueryParams(searc);
 
 function getQueryParams(qs) { //expresion regular para dividir el query del URL
     qs = qs.split("+").join(" "); //cambia + por espacio
+	qs = qs.substring(0, qs.length - 23) //borrar  Content-Type: text/html
 	var contador=0;
     var params = {}, tokens,
         re = /[?&]?([^=]+)=([^&]*)()/g;

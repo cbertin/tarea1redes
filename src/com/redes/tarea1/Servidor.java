@@ -274,7 +274,7 @@ class peticionWeb extends Thread
 	      		out.println("HTTP/1.0 200 ok");
 				//out.println("Server: Tarea1 Server/1.0");
 				out.println("Date: " + new Date());
-				//out.println("Content-Type: text/html");
+				out.println("Content-Type: text/html");
 				//out.println("Content-Length: " + mifichero.length());
 				out.println("Datos:"+variables);
 				out.println("\n");
