@@ -2,3 +2,13 @@ nombre=seba&ip=192.168.1.1&puerto=1313
 nombre=Celeste&ip=5.5.5.5&puerto=8080
 nombre=Juan+Carlos&ip=1.1.1.1&puerto=8080
 nombre=Obiwan&ip=1.1.1.1&puerto=1313
+nombre=Potato&ip=5.5.5.5&puerto=1234
+nombre=The+Potato&ip=9.9.9.9&puerto=876
+nombre=Pepito+Bertin&ip=192.168.9.9&puerto=3663
+nombre=Sejuani+IceClimber&ip=192.168.5.6&puerto=9999
+nombre=qwert&ip=6.6.6.6&puerto=1234
+nombre=Panda+Potato&ip=65.65.65.65&puerto=9443
+nombre=Celeste+Bertin2&ip=3.3.3.3&puerto=1234
+nombre=asdf&ip=65.65.65.65&puerto=1234
+nombre=asdf&ip=1.1.1.1&puerto=9443
+nombre=Celeste+Bertin&ip=127.1.1.1&puerto=1313
