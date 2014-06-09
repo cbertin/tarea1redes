@@ -93,7 +93,7 @@ void parsing(String query) //metodo parseo de querry
 {
    int i=0;
    int inicio;
-   inicio = query.indexOf("nombre");
+   inicio = query.indexOf("nick");
    query = query.substring(inicio);
    for (String param : query.split("&")) {
        String pair[] = param.split("=");
@@ -105,7 +105,7 @@ void parsing(String query) //metodo parseo de querry
    		for(int j=0;j<result.length;j++)
    			System.out.println("-- " + result[j] + "--");
    		
-   		escribir("contacto.pp", "nombre="+result[1]+"&ip="+result[3]+"&puerto="+result[5]);
+   		//escribir("contacto.pp", "nombre="+result[1]+"&ip="+result[3]+"&puerto="+result[5]);
 
    }
 
@@ -126,7 +126,7 @@ class peticionWeb extends Thread
 
 	void depura(String mensaje, int gravedad)
 	{
-		System.out.println(currentThread().toString() + " - " + mensaje);
+		//System.out.println(currentThread().toString() + " - " + mensaje);
 	}	
 
 	private Socket scliente 	= null;		// representa la petición de nuestro cliente
@@ -162,6 +162,7 @@ class peticionWeb extends Thread
 			do			
 			{
 				cadena = in.readLine();
+				System.out.println("CAPTADO:"+cadena);
 
 				if (cadena != null )
 				{
@@ -185,25 +186,27 @@ class peticionWeb extends Thread
                     }
 
                 	if((st.countTokens() >= 2) && tok.equals("POST")){
-                		String checkEnd=null;
-                		System.out.println("dentro de POST\n");
+                		String checkEnd="";
+                		System.out.println("dentro de POST\n");      
                 		int pepe;
                 		StringBuilder concadenado = new StringBuilder(); //para concatenar el string, aun con null entre medio
+                		System.out.println("endFile="+endFile);
                 		while(endFile==0){ //en form agregado char 178
                 			pepe=in.read();
-                		concadenado.append((char)pepe);
-                		//System.out.print("CONTENIDO ES: " + contenido + "END OF CONTENIDO");
-                		System.out.print("\n---CONCADENADO---\n " + concadenado.toString() + "\n---END OF CONCADENADO---\n");
-                		System.out.print("--" + (char)pepe + "--"); //%EF%BF%BD%3
-                		checkEnd = concadenado.toString();
-                			if(checkEnd.endsWith("%EF%BF%BD%3")){ //si el string include la Ñ
+                			concadenado.append((char)pepe);
+                		//System.out.print("\n---CONCADENADO---\n " + concadenado.toString() + "\n---END OF CONCADENADO---\n");
+                		System.out.print((char)pepe); //%EF%BF%BD%3
+                		
+                		checkEnd = concadenado.toString();                		
+                			if(checkEnd.endsWith("%EF%BF%BD")){ //si el string include la Ñ
                 				endFile=1;
                 				System.out.println("\nSALIR DEL WHILE!!!!!!!\n");
                 				parsing(checkEnd);
-                    			//close socket?
+                    			//close socket?                				
                 			}
                 			}
-                		retornaFichero("vista2.htm");//le responde al servidor devolviendo la vista luego de agregar el contacto
+                		System.out.println("POST:CAPTADO:"+checkEnd);
+                		retornaFichero("chat.htm");//le responde al servidor devolviendo la vista luego de agregar el contacto
                 		}
 
                 		}
@@ -243,24 +246,14 @@ class peticionWeb extends Thread
         // si la cadena esta vacia, no retorna el index.htm principal
         if (sfichero.endsWith("/") || sfichero.equals(""))
         {
-        	sfichero = sfichero + "index.htm" ;
+        	sfichero = sfichero + "login.htm" ;
         }
 
         String variables="";
-        if (sfichero.equals("vista2.htm"))
+        if (sfichero.equals("chat.htm"))
         {
-        	variables = variables + "?";
-        	BufferedReader reader = new BufferedReader(new FileReader("contacto.pp"));
-    		String line = null;
-    		while ((line = reader.readLine()) != null) {
-    		    System.out.println(line);
-    		    variables = variables+line+"&";
-    		}
-    		reader.close();
-    		variables=variables.substring(0,variables.length()-1);
-    		System.out.println(variables);
-		   
-        	
+        	variables = "juanca cele pepe groar";//Aqui tenemos que hacer el enlace con el servidor CLIENTETCP
+		        	
         }
         
         try
@@ -278,13 +271,8 @@ class peticionWeb extends Thread
 				//out.println("Content-Length: " + mifichero.length());
 				out.println("Datos:"+variables);
 				out.println("\n");
-		
-				
 				BufferedReader ficheroLocal = new BufferedReader(new FileReader(mifichero));
-				
-				
 				String linea = "";
-				
 				do			
 				{
 					linea = ficheroLocal.readLine();
